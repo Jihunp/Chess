@@ -1,4 +1,5 @@
-require_relative "board"
+require_relative 'board'
+# require_relative 'pieces'
 
 class Game
   attr_reader :board, :current_player
@@ -40,7 +41,7 @@ class Game
 
   # coordinates 
   def to_coord(input)
-    unless input.length == 2 && input[0].between("a".."h") && input[1].between(1..8)
+    unless input.length == 2 && input[0].between?("a","h") && input[1].between?("1","8")
       raise "Invalid input. Please enter a position (e.g a2 h3)"
     end
     [ROW_HASH[input[1]], COL_HASH[input[0]]]
@@ -48,3 +49,7 @@ class Game
 end
 
 Game.new.play if __FILE__ == $PROGRAM_NAME
+
+
+
+
