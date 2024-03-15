@@ -46,7 +46,7 @@ class Board
     @rows.each_with_index do |row, i|
       row.each_with_index do |square, j|
         bg = (i + j).even? ? :white : :light_black
-        piece_display = square.nil? ? "    " : square.display #unicode spacing is way off. NEED TO FIX
+        piece_display = square.nil? ? "  " : square.display #unicode spacing is way off. NEED TO FIX
         print piece_display.colorize(background: bg)
       end
       puts
