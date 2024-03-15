@@ -1,5 +1,5 @@
 require_relative 'board'
-# require_relative 'pieces'
+require_relative 'pieces'
 
 class Game
   attr_reader :board, :current_player

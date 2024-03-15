@@ -22,9 +22,9 @@ class Board
 
   def move_piece(turn_color, start_pos, end_pos)
     piece = self[start_pos]
-    # raise "must pick a piece" if piece.nil?
-    # raise "must pick own piece" if piece.color != turn_color
-    # raise "INVALID MOVE" if piece.moves.include?(end_pos)
+    raise "must pick a piece" if piece.nil?
+    raise "must pick own piece" if piece.color != turn_color
+    raise "INVALID MOVE" unless piece.moves.include?(end_pos)
 
     self[start_pos] = nil
     self[end_pos] = piece
@@ -46,7 +46,7 @@ class Board
     @rows.each_with_index do |row, i|
       row.each_with_index do |square, j|
         bg = (i + j).even? ? :white : :light_black
-        piece_display = square.nil? ? "  " : square.display #unicode spacing is way off. NEED TO FIX
+        piece_display = square.nil? ? "  " : square.display
         print piece_display.colorize(background: bg)
       end
       puts
