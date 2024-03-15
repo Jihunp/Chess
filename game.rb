@@ -29,9 +29,22 @@ class Game
       end
     end
     puts "#{current_player} is checkmated"
-
     nil
   end
-  []
+  
+  private
 
+  def swap_turn!
+    @current_player = (current_player == :white) ? :black : :white
+  end
+
+  # coordinates 
+  def to_coord(input)
+    unless input.length == 2 && input[0].between("a".."h") && input[1].between(1..8)
+      raise "Invalid input. Please enter a position (e.g a2 h3)"
+    end
+    [ROW_HASH[input[1]], COL_HASH[input[0]]]
+  end
 end
+
+Game.new.play if __FILE__ == $PROGRAM_NAME
