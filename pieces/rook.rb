@@ -8,12 +8,7 @@ include Slideable
 
 
   def directions
-    [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1],
-    ]
+    straight_direction
   end
 
 end

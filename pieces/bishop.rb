@@ -6,12 +6,7 @@ include Slideable
   end
 
   def directions
-    [
-      [1,1],
-      [1,-1],
-      [-1,1],
-      [-1,-1],
-    ]
+    diagonal_direction
   end
 
 end
