@@ -28,13 +28,15 @@ class Board
     raise "must pick a piece" if piece.nil?
     raise "must pick own piece" if piece.color != turn_color
 
-    p "#{piece.class} at #{piece.position} has moves: #{piece.moves}"
+    # p "#{piece.class} at #{piece.position} has moves: #{piece.moves}"
     raise "INVALID MOVE" unless piece.moves.include?(end_pos)
+    raise "INVALID MOVE: king in check" unless piece.valid_moves.include?(end_pos)
 
     move_piece!(start_pos, end_pos)
   end
 
   def move_piece!(start_pos, end_pos)
+    piece = self[start_pos]
     self[start_pos] = nil
     self[end_pos] = piece
     piece.position = end_pos
@@ -55,6 +57,10 @@ class Board
     [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook].each_with_index do |piece, i|
       piece.new(:black, [0, i], self)
     end
+
+    #pieces used to check whether king is in checkmate or not
+    Pawn.new(:white, [2,4], self)
+    # Knight.new(:white, [3,4], self)
   end
 
   def pieces
@@ -71,17 +77,23 @@ class Board
 
   def dup
     temp_board = Board.new(false)
-
     pieces.each do |piece|
       piece.class.new(piece.color, piece.position, temp_board)
     end
-
     temp_board
-
   end
 
+  def in_check?(color)
+    enemy_pieces(color).each do |piece|
+      return true if piece.moves.include?(king_position(color))
+    end
+    false
+  end
 
-
+  def king_position(color)
+    king = pieces.find {|piece| piece.color == color && piece.class == King}
+    king.position
+  end
 
   def display
     @rows.each_with_index do |row, i|

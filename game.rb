@@ -17,6 +17,7 @@ class Game
       board.display
       begin
         puts "#{current_player}'s turn"
+        puts "In check" if board.in_check?(current_player)
         puts "Enter position of piece:"
         start_pos = to_coord(gets.chomp)
         puts "Enter position to move:"
@@ -29,6 +30,7 @@ class Game
         retry
       end
     end
+    board.display
     puts "#{current_player} is checkmated"
     nil
   end
