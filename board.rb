@@ -38,12 +38,12 @@ class Board
   end
 
   def set_up_pieces
-    (0..7).each { |i| Pawn.new(:white, [6, i], self) }
+    # (0..7).each { |i| Pawn.new(:white, [6, i], self) }
     [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook].each_with_index do |piece, i|
       piece.new(:white, [7, i], self)
     end
       
-    (0..7).each { |i| Pawn.new(:black, [1, i], self) }
+    # (0..7).each { |i| Pawn.new(:black, [1, i], self) }
     [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook].each_with_index do |piece, i|
       piece.new(:black, [0, i], self)
     end
