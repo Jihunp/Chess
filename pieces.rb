@@ -1,4 +1,5 @@
 require_relative 'pieces/steppable'
+require_relative 'pieces/slideable'
 
 require_relative 'pieces/piece'
 require_relative 'pieces/pawn'
