@@ -28,6 +28,13 @@ class Board
 
     self[start_pos] = nil
     self[end_pos] = piece
+    piece.position = end_pos
+
+  end
+
+  def on?(end_pos)
+  end_row, end_col = end_pos
+  end_row.between?(0,7) && end_col.between?(0, 7)
   end
 
   def set_up_pieces

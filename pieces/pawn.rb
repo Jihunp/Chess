@@ -15,14 +15,22 @@ class Pawn < Piece
     one_step = [row + direction, col]
     two_step = [row + (direction * 2), col]
 
-    moves << one_step if board[one_step].nil?
+    moves << one_step if board.on?(one_step) && board[one_step].nil?
     moves << two_step if board[one_step].nil? && board[two_step].nil? && unmoved
     
     moves
   end
 
   def diagonal_attacks
-    []
+    moves = []
+
+    diagonal_left = [row + direction, col - 1]
+    diagonal_right = [row + direction, col + 1]
+
+    moves << diagonal_left if board[diagonal_left]&.color != color
+    moves << diagonal_right if board[diagonal_right]&.color != color
+
+    moves
   end
 
   def direction
@@ -33,11 +41,4 @@ class Pawn < Piece
     color == :white && row == 6 || color == :black && row == 1
   end
 
-  def row
-    position[0]
-  end
-
-  def col
-    position[1]
-  end
 end

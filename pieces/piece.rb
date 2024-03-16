@@ -15,6 +15,13 @@ class Piece
   def colorize_color
     color == :white ? :light_white : :black
   end
+  def row
+    position[0]
+  end
+
+  def col
+    position[1]
+  end
 end
 
 
